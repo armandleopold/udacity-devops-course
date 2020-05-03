@@ -9,9 +9,8 @@ pipeline {
     
     stage('Upload to AWS') {
       steps {
-      	sh 'Hello world with aws creds.'
         withAWS(region: 'us-east-2', credentials: 'aws-static') {
-          def identity = awsIdentity()
+      	  sh 'Hello world with aws creds.'
           s3Upload(file: './index.html', bucket: 'udacity-devops-course-aleopold')
         }
       }

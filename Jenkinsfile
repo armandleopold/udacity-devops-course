@@ -2,10 +2,11 @@ pipeline {
   agent any
   stages {
     stage('Upload to AWS.') {
-            withAWS(region:'us-east-2', credentials:'aws-static'){
-                def identity=awsIdentity();//Log AWS credentials
-                s3Upload(file:'index.html', bucket:'udacity-devops-course-aleopold', path:'/index.html')
-            }
+      steps {
+        withAWS(region:'us-east-2', credentials:'aws-static') {
+          s3Upload(file:'index.html', bucket:'udacity-devops-course-aleopold', path:'/index.html')
+        }
+      }
     }
   }
 }
